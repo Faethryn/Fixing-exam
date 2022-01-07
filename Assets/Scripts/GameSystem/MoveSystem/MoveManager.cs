@@ -15,6 +15,7 @@ namespace DAE.GameSystem
     {
 
         private MultiValueDictionary<CardType, IMove<TPiece,TCard>> _moves = new MultiValueDictionary<CardType, IMove<TPiece,TCard>>();
+        private MultiValueDictionary<CardType, IMove<TPiece, TCard>> _adjustedMoves = new MultiValueDictionary<CardType, IMove<TPiece, TCard>>();
 
         private readonly Board<Tile, TPiece> _board;
         private readonly Grid<Tile> _grid;
@@ -52,6 +53,8 @@ namespace DAE.GameSystem
                 .First(m => m.Positions(_board, _grid, piece,card).Contains(position))
                 .Execute(_board, _grid, piece, position,card);
         }
+
+       
 
         private void InitializeMoves()
         {

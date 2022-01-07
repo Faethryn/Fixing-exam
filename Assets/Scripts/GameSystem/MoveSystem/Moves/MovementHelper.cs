@@ -29,26 +29,26 @@ namespace DAE.GameSystem
 
 
         public MovementHelper<TPiece ,TCard> NorthEast(int numTiles = int.MaxValue, params Validator[] validators)
-            => Move(0, 1, -2, numTiles, validators);
-
-        public MovementHelper<TPiece, TCard> East(int numTiles = int.MaxValue, params Validator[] validators)
             => Move(1, 0, -2, numTiles, validators);
 
+        public MovementHelper<TPiece, TCard> East(int numTiles = int.MaxValue, params Validator[] validators)
+            => Move(0, 1, -2, numTiles, validators);
+
         public MovementHelper<TPiece, TCard> SouthEast(int numTiles = int.MaxValue, params Validator[] validators)
-            => Move(1, -1, 0, numTiles, validators);
+            => Move(-1, 1, 0, numTiles, validators);
 
         public MovementHelper<TPiece, TCard> SouthWest(int numTiles = int.MaxValue, params Validator[] validators)
-            => Move(0, -1, 2, numTiles, validators);
+            => Move(-1, 1, 2, numTiles, validators);
 
         public MovementHelper<TPiece, TCard> West(int numTiles = int.MaxValue, params Validator[] validators)
-            => Move(-1, 0, 2, numTiles, validators);
+            => Move(0, -1, 2, numTiles, validators);
 
         public MovementHelper<TPiece, TCard> NorthWest(int numTiles = int.MaxValue, params Validator[] validators)
-            => Move(-1, 1, 0, numTiles, validators);
+            => Move(1, -1, 0, numTiles, validators);
 
         public delegate bool Validator(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, Tile position);
 
-        public MovementHelper<TPiece, TCard> Move(int xOffset, int yOffset, int zOffset, int numTiles = int.MaxValue, params Validator[] validators)
+        public MovementHelper<TPiece, TCard> Move(int xOffset, int yOffset, int zOffset, int numTiles , params Validator[] validators)
         {
 
 
@@ -62,7 +62,7 @@ namespace DAE.GameSystem
 
             var nextXCoordinate = coordinate.x + xOffset;
             var nextYCoordinate = coordinate.y + yOffset;
-            var nextZCoordinate = coordinate.z;
+           var  nextZCoordinate = coordinate.z + zOffset;
 
             var hasNextPosition = _grid.TryGetPositionAt(nextXCoordinate, nextYCoordinate, nextZCoordinate, out var nextPosition);
             int step = 0;
@@ -87,9 +87,11 @@ namespace DAE.GameSystem
                     return this;
                 }
 
-                nextXCoordinate = coordinate.x;
-                nextYCoordinate = coordinate.y;
-                nextZCoordinate = coordinate.z;
+                nextXCoordinate = coordinate.x + xOffset;
+                nextYCoordinate = coordinate.y + yOffset;
+                nextZCoordinate = coordinate.z + zOffset;
+
+                Debug.Log($"coords for tiles {nextXCoordinate} {nextYCoordinate} {nextZCoordinate}");
 
                 hasNextPosition = _grid.TryGetPositionAt(nextXCoordinate, nextYCoordinate, nextZCoordinate, out nextPosition);
 

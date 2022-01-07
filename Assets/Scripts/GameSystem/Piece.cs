@@ -24,5 +24,19 @@ class Piece : MonoBehaviour, IPiece
     [SerializeField]
     private int _playerID;
     public int PlayerID => _playerID;
+
+    public void MoveTo(Vector3 worldPosition)
+    {
+        transform.position = worldPosition;
+    }
+    public void Place(Vector3 worldPosition)
+    {
+        transform.position = worldPosition;
+        gameObject.SetActive(true);
+    }
+    public void Taken()
+    {
+        gameObject.SetActive(false);
+    }
 }
 

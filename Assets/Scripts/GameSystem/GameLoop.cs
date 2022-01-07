@@ -59,7 +59,36 @@ namespace DAE.GameSystem
             DrawCard();
             DrawCard();
             DrawCard();
-          
+
+            _board.Moved += (s, e) =>
+            {
+                if (_grid.TryGetCoordinateOf(e.ToPosition, out var toCoordinate))
+                {
+                    var worldPosition =
+                        _positionHelper.ToWorldPosition(
+                            _grid, _boardParent, toCoordinate.x, toCoordinate.y);
+
+                    e.Piece.MoveTo(worldPosition);
+
+                }
+            };
+
+            _board.Placed += (s, e) =>
+            {
+                if (_grid.TryGetCoordinateOf(e.ToPosition, out var toCoordinate))
+                {
+                    var worldPosition =
+                        _positionHelper.ToWorldPosition(
+                            _grid, _boardParent, toCoordinate.x, toCoordinate.y);
+
+                    e.Piece.Place(worldPosition);
+                }
+            };
+
+            _board.Taken += (s, e) =>
+            {
+                e.Piece.Taken();
+            };
 
 
         }
@@ -107,7 +136,7 @@ namespace DAE.GameSystem
 
                     if (isolatedPositions.Contains(e.Position))
                     {
-                        _moveManager.Move(_player.GetComponent<Piece>(), _currentCard, e.Position);
+                       
 
                        
 
@@ -128,7 +157,7 @@ namespace DAE.GameSystem
 
                     if (isolatedPositions.Contains(e.Position))
                     {
-                        _moveManager.Move(_player.GetComponent<Piece>(), _currentCard, e.Position);
+                       
 
                        
 
@@ -161,6 +190,8 @@ namespace DAE.GameSystem
                 {
                     
                     board.Place(piece, position);
+
+
                 }
 
                
