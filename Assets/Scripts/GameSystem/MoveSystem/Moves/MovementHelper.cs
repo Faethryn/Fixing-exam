@@ -62,9 +62,9 @@ namespace DAE.GameSystem
 
             var nextXCoordinate = coordinate.x + xOffset;
             var nextYCoordinate = coordinate.y + yOffset;
-           var  nextZCoordinate = coordinate.z + zOffset;
+           
 
-            var hasNextPosition = _grid.TryGetPositionAt(nextXCoordinate, nextYCoordinate, nextZCoordinate, out var nextPosition);
+            var hasNextPosition = _grid.TryGetPositionAt(nextXCoordinate, nextYCoordinate, out var nextPosition);
             int step = 0;
             while (hasNextPosition && step < numTiles)
             {
@@ -89,11 +89,11 @@ namespace DAE.GameSystem
 
                 nextXCoordinate = coordinate.x + xOffset;
                 nextYCoordinate = coordinate.y + yOffset;
-                nextZCoordinate = coordinate.z + zOffset;
+               
 
-                Debug.Log($"coords for tiles {nextXCoordinate} {nextYCoordinate} {nextZCoordinate}");
+                Debug.Log($"coords for tiles {nextXCoordinate} {nextYCoordinate} ");
 
-                hasNextPosition = _grid.TryGetPositionAt(nextXCoordinate, nextYCoordinate, nextZCoordinate, out nextPosition);
+                hasNextPosition = _grid.TryGetPositionAt(nextXCoordinate, nextYCoordinate,  out nextPosition);
 
                 step++;
             }

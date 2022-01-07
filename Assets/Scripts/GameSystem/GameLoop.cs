@@ -173,7 +173,7 @@ namespace DAE.GameSystem
                 };
 
                 var (x, y ,z) = _positionHelper.ToGridPostion(grid, _boardParent, tile.transform.position);
-                grid.Register(x, y, z, tile);
+                grid.Register(x, y, tile);
 
 
                
@@ -186,7 +186,7 @@ namespace DAE.GameSystem
             foreach( var piece in pieces)
             {
                 var (x,y,z) = _positionHelper.ToGridPostion(grid,_boardParent, piece.gameObject.transform.position);
-                if (grid.TryGetPositionAt(x, y, z, out var position))
+                if (grid.TryGetPositionAt(x, y, out var position))
                 {
                     
                     board.Place(piece, position);

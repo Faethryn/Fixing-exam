@@ -21,23 +21,23 @@ namespace DAE.BoardSystem
             Columns = columns;
         }
 
-        private BidirectionalDictionary<(int x, int y, int z), TPosition> _positions = new BidirectionalDictionary<(int, int, int), TPosition>();
-        public bool TryGetPositionAt(int x, int y, int z, out TPosition position)
-            => _positions.TryGetValue((x, y, z), out position);
+        private BidirectionalDictionary<(int x, int y), TPosition> _positions = new BidirectionalDictionary<(int, int), TPosition>();
+        public bool TryGetPositionAt(int x, int y, out TPosition position)
+            => _positions.TryGetValue((x, y), out position);
 
-        public bool TryGetCoordinateOf(TPosition position, out (int x, int y, int z) coordinate)
+        public bool TryGetCoordinateOf(TPosition position, out (int x, int y) coordinate)
            => _positions.TryGetKey(position, out coordinate);
 
 
-        public void Register(int x, int y, int z, TPosition position)
+        public void Register(int x, int y, TPosition position)
         {
 
 #if UNITY_EDITOR
 
 #endif
-
-            Debug.Log((x, y, z));
-            _positions.Add((x,y, z), position);
+           
+            Debug.Log((x, y));
+            _positions.Add((x,y), position);
         }
     }
 }

@@ -43,8 +43,8 @@ public class HexGen : MonoBehaviour
         //var x = (3f / 2f * q);
         //var y = ((Mathf.Sqrt(3) / 2f * q) + (Mathf.Sqrt(3) * r));
 
-        var x = (float)(Mathf.Sqrt(3f) * q + Mathf.Sqrt(3f) / 2f * r);
-        var y = (3f / 2f * r) ;
+        var y = ((3f / 2f) * r) ;
+        var x = (float)( Mathf.Sqrt(3f) / 2f * r  + Mathf.Sqrt(3f) * q);
 
         return new Vector2(x, y);
     }
@@ -52,7 +52,7 @@ public class HexGen : MonoBehaviour
     private void HexInstantiation(Vector2 position, int q, int r)
     {
         Vector3 spawnPosition = new Vector3(position.x, 0, position.y);
-        int s = -q * 2 - r * 2;
+        int s = -q  - r ;
 
         GameObject hex = Instantiate(_hexPrefab, spawnPosition, Quaternion.Euler(0,30,0));
         hex.GetComponent<Tile>().Q = q;
