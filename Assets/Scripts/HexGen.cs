@@ -54,7 +54,7 @@ public class HexGen : MonoBehaviour
         Vector3 spawnPosition = new Vector3(position.x, 0, position.y);
         int s = -q  - r ;
 
-        GameObject hex = Instantiate(_hexPrefab, spawnPosition, Quaternion.Euler(0,30,0));
+        GameObject hex = Instantiate(_hexPrefab, spawnPosition, _hexPrefab.transform.rotation);
         hex.GetComponent<Tile>().Q = q;
         hex.GetComponent<Tile>().R = r;
         hex.GetComponent<Tile>().S = s;

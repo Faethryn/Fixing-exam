@@ -66,7 +66,7 @@ namespace DAE.GameSystem
                 {
                     var worldPosition =
                         _positionHelper.ToWorldPosition(
-                            _grid, _boardParent, toCoordinate.x, toCoordinate.y);
+                            toCoordinate.x, toCoordinate.y);
 
                     e.Piece.MoveTo(worldPosition);
 
@@ -79,7 +79,7 @@ namespace DAE.GameSystem
                 {
                     var worldPosition =
                         _positionHelper.ToWorldPosition(
-                            _grid, _boardParent, toCoordinate.x, toCoordinate.y);
+                          toCoordinate.x, toCoordinate.y);
 
                     e.Piece.Place(worldPosition);
                 }
@@ -172,8 +172,8 @@ namespace DAE.GameSystem
 
                 };
 
-                var (x, y ,z) = _positionHelper.ToGridPostion(grid, _boardParent, tile.transform.position);
-                grid.Register(x, y, tile);
+                Vector2 registerposition = _positionHelper.ToGridPosition( tile.gameObject.transform.position);
+                grid.Register((int)registerposition.x, (int)registerposition.y, tile);
 
 
                
@@ -185,8 +185,8 @@ namespace DAE.GameSystem
             var pieces = FindObjectsOfType<Piece>();
             foreach( var piece in pieces)
             {
-                var (x,y,z) = _positionHelper.ToGridPostion(grid,_boardParent, piece.gameObject.transform.position);
-                if (grid.TryGetPositionAt(x, y, out var position))
+                Vector2 registerposition = _positionHelper.ToGridPosition(_player.gameObject.transform.position);
+                if (grid.TryGetPositionAt((int)registerposition.x, (int)registerposition.y, out var position))
                 {
                     
                     board.Place(piece, position);
