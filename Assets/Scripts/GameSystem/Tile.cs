@@ -30,9 +30,13 @@ public class Tile : MonoBehaviour ,IDropHandler, IPointerEnterHandler, IPointerE
     public event EventHandler<PositionEventArgs>Exited;
     public event EventHandler<PositionEventArgs> Entered;
 
-    //[SerializeField]
-    //private GameLoop _loop;
+    [SerializeField]
+    private GameLoop _loop;
 
+    private void Start()
+    {
+        
+    }
     private PositionModel _model;
 
     public PositionModel Model

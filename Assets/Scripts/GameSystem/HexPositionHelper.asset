@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a5c86d1efc35c43a6ecaddfefcf175, type: 3}
   m_Name: HexPositionHelper
   m_EditorClassIdentifier: 
-  TileRadius: 0.5
+  TileRadius: 1

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [ExecuteInEditMode]
 public class HexGen : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class HexGen : MonoBehaviour
     private GameObject _hexPrefab;
     [SerializeField]
     private int _layers;
-
+   
 
     void Start()
     {
@@ -54,10 +55,12 @@ public class HexGen : MonoBehaviour
         Vector3 spawnPosition = new Vector3(position.x, 0, position.y);
         int s = -q  - r ;
 
+
         GameObject hex = Instantiate(_hexPrefab, spawnPosition, _hexPrefab.transform.rotation);
         hex.GetComponent<Tile>().Q = q;
         hex.GetComponent<Tile>().R = r;
         hex.GetComponent<Tile>().S = s;
         hex.name = $"Hex {q}, {r}, {s}";
+
     }
 }

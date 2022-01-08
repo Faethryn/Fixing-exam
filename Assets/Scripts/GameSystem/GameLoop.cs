@@ -25,6 +25,8 @@ namespace DAE.GameSystem
         [SerializeField]
         private PositionHelper _positionHelper;
 
+        private List<Tile> _allTiles = new List<Tile>();
+
         //internal void DebugPosition(Tile tile)
         //{
         //    var (x,y) = _positionHelper.ToGridPostion(_grid, _boardParent, tile.transform.position);
@@ -94,7 +96,10 @@ namespace DAE.GameSystem
         }
 
 
-
+        public void AddTiles(Tile tile)
+        {
+            _allTiles.Add(tile);
+        }
       
 
         private void ConnectGrid(Grid<Tile> grid)
@@ -173,7 +178,7 @@ namespace DAE.GameSystem
                 };
 
                 Vector2 registerposition = _positionHelper.ToGridPosition( tile.gameObject.transform.position);
-                grid.Register((int)registerposition.x, (int)registerposition.y, tile);
+                grid.Register(Mathf.RoundToInt(registerposition.x), Mathf.RoundToInt( registerposition.y), tile);
 
 
                
