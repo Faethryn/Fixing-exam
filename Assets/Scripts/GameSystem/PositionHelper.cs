@@ -16,8 +16,8 @@ namespace DAE.GameSystem
             var q = ((2f / 3f) * worldPosition.x) / TileRadius;
             var r = ((-1f / 3f) * worldPosition.x) + (Mathf.Sqrt(3f) / 3f * worldPosition.z) / TileRadius;
 
-            var x = (int)Mathf.Round(q);
-            var y = (int)Mathf.Round(r);
+            var x = Mathf.RoundToInt(q);
+            var y = Mathf.RoundToInt(r);
 
 
             var worldX = ((3f / 2f) * x) * TileRadius;
