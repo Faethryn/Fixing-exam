@@ -11,10 +11,10 @@ namespace DAE.GameSystem
        where TPiece : IPiece
         where TCard : ICard
     {
-        bool CanExecute(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, TCard card);
+        bool CanExecute(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, TCard card, Tile position);
 
         void Execute(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, Tile position, TCard card);
 
-        List<Tile> Positions(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, TCard card);
+        List<Tile> Positions(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, TCard card, Tile position);
     }
 }

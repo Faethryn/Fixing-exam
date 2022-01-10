@@ -17,13 +17,15 @@ namespace DAE.GameSystem
         private TPiece _piece;
         private TCard _card;
         private List<Tile> _validPositions = new List<Tile>();
+        private Tile _tile;
 
-        public MovementHelper(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, TCard card)
+        public MovementHelper(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, TCard card, Tile position)
         {
             _board = board;
             _grid = grid;
             _piece = piece;
             _card = card;
+            _tile = position;
         }
 
 
@@ -45,10 +47,18 @@ namespace DAE.GameSystem
         public MovementHelper<TPiece, TCard> West(int numTiles = int.MaxValue, params Validator[] validators)
             => Move(-1, -0,  numTiles, validators);
 
+        public MovementHelper<TPiece, TCard> Warp(int numTiles = int.MaxValue, params Validator[] validators)
+            => Move(-1, -0, numTiles, validators);
+
 
         public delegate bool Validator(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, Tile position);
 
-        public MovementHelper<TPiece, TCard> Move(int xOffset, int yOffset, int numTiles , params Validator[] validators)
+        public    MovementHelper<TPiece, TCard> Warp()
+        {
+            _validPositions.Add(_tile);
+            return this;
+        }
+        public MovementHelper<TPiece, TCard> Move(int xOffset, int yOffset, int numTiles = int.MaxValue, params Validator[] validators)
         {
 
 
@@ -60,7 +70,7 @@ namespace DAE.GameSystem
             if (!_grid.TryGetCoordinateOf(position, out var coordinate))
                 return this;
 
-            var nextXCoordinate = coordinate.x + xOffset;
+            var nextXCoordinate = coordinate.x + xOffset ;
             var nextYCoordinate = coordinate.y + yOffset;
            
 
@@ -87,8 +97,8 @@ namespace DAE.GameSystem
                     return this;
                 }
 
-                nextXCoordinate = coordinate.x + xOffset;
-                nextYCoordinate = coordinate.y + yOffset;
+                nextXCoordinate += xOffset;
+                nextYCoordinate += yOffset;
                
 
               

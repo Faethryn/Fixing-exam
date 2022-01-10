@@ -4,19 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace DAE.GameSystem
-{
-
-    class ConfigurableMove<TPiece,TCard> : MoveBase<TPiece, TCard>
+{ 
+ class SlashMove<TPiece, TCard> : MoveBase<TPiece, TCard>
        where TPiece : IPiece
       where TCard : ICard
     {
-
         public delegate List<Tile> PositionCollector(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, TCard card, Tile position);
 
 
         private PositionCollector _positionCollector;
 
-        public ConfigurableMove(PositionCollector positionCollector)
+        public SlashMove(PositionCollector positionCollector)
         {
             _positionCollector = positionCollector;
         }

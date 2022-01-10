@@ -14,7 +14,7 @@ namespace DAE.GameSystem
     {
         
 
-        public bool CanExecute(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, TCard card)
+        public bool CanExecute(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, TCard card, Tile position)
         {
             return true;
         }
@@ -29,7 +29,7 @@ namespace DAE.GameSystem
             board.Move(piece, position);
         }
 
-        public abstract List<Tile> Positions(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, TCard card);
+        public abstract List<Tile> Positions(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, TCard card, Tile position);
 
     }
 }

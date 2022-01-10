@@ -28,6 +28,10 @@ PrefabInstance:
       value: Bash
       objectReference: {fileID: 0}
     - target: {fileID: 11437358, guid: 43bd9bca3c5a51140888431876cf4997, type: 3}
+      propertyPath: m_Color.a
+      value: 0.6313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437358, guid: 43bd9bca3c5a51140888431876cf4997, type: 3}
       propertyPath: m_Color.b
       value: 0.33088237
       objectReference: {fileID: 0}
@@ -110,6 +114,10 @@ PrefabInstance:
     - target: {fileID: 22420428, guid: 43bd9bca3c5a51140888431876cf4997, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652830414402063702, guid: 43bd9bca3c5a51140888431876cf4997, type: 3}
+      propertyPath: m_Color.a
+      value: 0.6039216
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43bd9bca3c5a51140888431876cf4997, type: 3}
