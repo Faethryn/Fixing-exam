@@ -123,11 +123,11 @@ namespace DAE.GameSystem
                         _currentCard.Used();
 
                         DrawCard();
+
+                    }
                     foreach(var position in validPositions)
                     {
                         position.PositionDeactivated(this, e);
-                    }
-
                     }
 
 

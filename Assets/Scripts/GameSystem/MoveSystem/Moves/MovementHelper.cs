@@ -29,26 +29,26 @@ namespace DAE.GameSystem
 
 
         public MovementHelper<TPiece ,TCard> NorthEast(int numTiles = int.MaxValue, params Validator[] validators)
-            => Move(1, 0, -2, numTiles, validators);
+            => Move(1, 0,  numTiles, validators);
+        public MovementHelper<TPiece, TCard> NorthWest(int numTiles = int.MaxValue, params Validator[] validators)
+            => Move(-1, 1,  numTiles, validators);
 
         public MovementHelper<TPiece, TCard> East(int numTiles = int.MaxValue, params Validator[] validators)
-            => Move(0, 1, -2, numTiles, validators);
+            => Move(0, 1,  numTiles, validators);
 
         public MovementHelper<TPiece, TCard> SouthEast(int numTiles = int.MaxValue, params Validator[] validators)
-            => Move(-1, 1, 0, numTiles, validators);
+            => Move(1, -1,  numTiles, validators);
 
         public MovementHelper<TPiece, TCard> SouthWest(int numTiles = int.MaxValue, params Validator[] validators)
-            => Move(-1, 1, 2, numTiles, validators);
+            => Move(0, -1,  numTiles, validators);
 
         public MovementHelper<TPiece, TCard> West(int numTiles = int.MaxValue, params Validator[] validators)
-            => Move(0, -1, 2, numTiles, validators);
+            => Move(-1, -0,  numTiles, validators);
 
-        public MovementHelper<TPiece, TCard> NorthWest(int numTiles = int.MaxValue, params Validator[] validators)
-            => Move(1, -1, 0, numTiles, validators);
 
         public delegate bool Validator(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, Tile position);
 
-        public MovementHelper<TPiece, TCard> Move(int xOffset, int yOffset, int zOffset, int numTiles , params Validator[] validators)
+        public MovementHelper<TPiece, TCard> Move(int xOffset, int yOffset, int numTiles , params Validator[] validators)
         {
 
 
@@ -91,7 +91,7 @@ namespace DAE.GameSystem
                 nextYCoordinate = coordinate.y + yOffset;
                
 
-                Debug.Log($"coords for tiles {nextXCoordinate} {nextYCoordinate} ");
+              
 
                 hasNextPosition = _grid.TryGetPositionAt(nextXCoordinate, nextYCoordinate,  out nextPosition);
 
