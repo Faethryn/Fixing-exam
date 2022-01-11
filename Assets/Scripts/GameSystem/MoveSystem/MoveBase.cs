@@ -14,14 +14,14 @@ namespace DAE.GameSystem
     {
         
 
-        public bool CanExecute(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, TCard card, Tile position)
+        public virtual bool CanExecute(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, TCard card, Tile position)
         {
             return true;
         }
 
        
 
-        public void Execute(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, Tile position, TCard card)
+        public virtual void Execute(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, Tile position, TCard card)
         {
             if (board.TryGetPieceAt(position, out var toPiece))
                 board.Take(toPiece);

@@ -9,12 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 107266, guid: 43bd9bca3c5a51140888431876cf4997, type: 3}
       propertyPath: m_Name
-      value: Dash Variant
+      value: Beam
       objectReference: {fileID: 0}
     - target: {fileID: 11407982, guid: 43bd9bca3c5a51140888431876cf4997, type: 3}
       propertyPath: m_Text
-      value: Dash across the map, going in a straight line with no ability to stop
-        inbetween
+      value: Shoot a laser beam across the map, decimating enemies in a line
       objectReference: {fileID: 0}
     - target: {fileID: 11425980, guid: 43bd9bca3c5a51140888431876cf4997, type: 3}
       propertyPath: cardType
@@ -26,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11434540, guid: 43bd9bca3c5a51140888431876cf4997, type: 3}
       propertyPath: m_Text
-      value: Dash
+      value: Beam
       objectReference: {fileID: 0}
     - target: {fileID: 11437358, guid: 43bd9bca3c5a51140888431876cf4997, type: 3}
       propertyPath: m_Color.a

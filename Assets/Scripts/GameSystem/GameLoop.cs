@@ -118,15 +118,24 @@ namespace DAE.GameSystem
 
                     if (isolatedPositions.Contains(e.Position))
                     {
-                        _moveManager.Move(_player.GetComponent<Piece>(), _currentCard, e.Position);
+                        validPositions = isolatedPositions;
+                        foreach (var position in validPositions)
+                        {
+                            _moveManager.Move(_player.GetComponent<Piece>(), _currentCard, position);
+                            position.PositionDeactivated(this, e);
+
+                        }
 
                         _currentCard.Used();
 
                         DrawCard();
 
                     }
+                    else
                     foreach(var position in validPositions)
                     {
+                       
+
                         position.PositionDeactivated(this, e);
                     }
 
@@ -141,9 +150,9 @@ namespace DAE.GameSystem
 
                     if (isolatedPositions.Contains(e.Position))
                     {
-                       
 
-                       
+
+                        validPositions = isolatedPositions;
 
                       
 
@@ -162,9 +171,9 @@ namespace DAE.GameSystem
 
                     if (isolatedPositions.Contains(e.Position))
                     {
-                       
 
-                       
+
+                        validPositions = isolatedPositions;
 
                         
 
@@ -190,7 +199,7 @@ namespace DAE.GameSystem
             var pieces = FindObjectsOfType<Piece>();
             foreach( var piece in pieces)
             {
-                Vector2 registerposition = _positionHelper.ToGridPosition(_player.gameObject.transform.position);
+                Vector2 registerposition = _positionHelper.ToGridPosition(piece.gameObject.transform.position);
                 if (grid.TryGetPositionAt((int)registerposition.x, (int)registerposition.y, out var position))
                 {
                     

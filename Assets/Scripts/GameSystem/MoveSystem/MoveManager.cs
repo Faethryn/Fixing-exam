@@ -40,7 +40,7 @@ namespace DAE.GameSystem
         public List<Tile> IsolatedValidPositionFor(TPiece piece, Tile position, TCard card)
         {
 
-            return _moves[card.cardType]
+            return _adjustedMoves[card.cardType]
                .Where(m => m.CanExecute(_board, _grid, piece, card, position))
                .SelectMany(m => m.Positions(_board, _grid, piece, card,position))
                .ToList();
@@ -48,9 +48,9 @@ namespace DAE.GameSystem
 
         public void Move(TPiece piece, TCard card, Tile position)
         {
-            _moves[card.cardType]
+            _adjustedMoves[card.cardType]
                 .Where(m => m.CanExecute(_board, _grid, piece, card, position))
-                .First(m => m.Positions(_board, _grid, piece,card, position).Contains(position))
+                .First(m => m.Positions(_board, _grid, piece, card, position).Contains(position))
                 .Execute(_board, _grid, piece, position,card);
         }
 
@@ -58,7 +58,7 @@ namespace DAE.GameSystem
 
         private void InitializeMoves()
         {
-            _moves.Add(CardType.Bash, new ConfigurableMove<TPiece, TCard>(
+            _moves.Add(CardType.Bash, new BashMove<TPiece, TCard>(
                 (Board<Tile, TPiece> b, Grid<Tile> g, TPiece p, TCard c, Tile e) => new MovementHelper<TPiece, TCard>(b, g, p,c, e)
                                 .NorthEast(1, MovementHelper<TPiece, TCard>.IsEmptyTile)
                                 .NorthWest(1, MovementHelper<TPiece, TCard>.IsEmptyTile)
@@ -67,7 +67,7 @@ namespace DAE.GameSystem
                                 .SouthEast(1, MovementHelper<TPiece, TCard>.IsEmptyTile)
                                 .SouthWest(1, MovementHelper<TPiece, TCard>.IsEmptyTile)
                                 .Collect()));
-            _moves.Add(CardType.Dash, new ConfigurableMove<TPiece, TCard>(
+            _moves.Add(CardType.Beam, new SlashMove<TPiece, TCard>(
               (Board<Tile, TPiece> b, Grid<Tile> g, TPiece p, TCard c, Tile e) => new MovementHelper<TPiece, TCard>(b, g, p, c, e)
                               .NorthEast( )
                               .NorthWest()
@@ -80,15 +80,49 @@ namespace DAE.GameSystem
             (Board<Tile, TPiece> b, Grid<Tile> g, TPiece p, TCard c, Tile e) => new MovementHelper<TPiece, TCard>(b, g, p, c, e)
                             .Warp()
                             .Collect()));
-            _moves.Add(CardType.Slash, new ConfigurableMove<TPiece, TCard>(
+            _moves.Add(CardType.Slash, new SlashMove<TPiece, TCard>(
             (Board<Tile, TPiece> b, Grid<Tile> g, TPiece p, TCard c, Tile e) => new MovementHelper<TPiece, TCard>(b, g, p, c, e)
-                            .NorthEast()
-                            .NorthWest()
-                            .East()
-                            .West()
-                            .SouthEast()
-                            .SouthWest()
+                            .NorthEast(1)
+                            .NorthWest(1)
+                            .East(1)
+                            .West(1)
+                            .SouthEast(1)
+                            .SouthWest(1)
                             .Collect()));
+
+          _adjustedMoves.Add(CardType.Slash, new SlashMove<TPiece, TCard>(
+            (Board<Tile, TPiece> b, Grid<Tile> g, TPiece p, TCard c, Tile e) => new MovementHelper<TPiece, TCard>(b, g, p, c, e)
+                            .BashNorthEast(1)
+                            .BashNorthWest(1)
+                            .BashEast(1)
+                            .BashWest(1)
+                            .BashSouthEast(1)
+                            .BashSouthWest(1)
+                            .Collect()));
+
+            _adjustedMoves.Add(CardType.Warp, new ConfigurableMove<TPiece, TCard>(
+           (Board<Tile, TPiece> b, Grid<Tile> g, TPiece p, TCard c, Tile e) => new MovementHelper<TPiece, TCard>(b, g, p, c, e)
+                           .Warp()
+                           .Collect()));
+            _adjustedMoves.Add(CardType.Beam, new SlashMove<TPiece, TCard>(
+           (Board<Tile, TPiece> b, Grid<Tile> g, TPiece p, TCard c, Tile e) => new MovementHelper<TPiece, TCard>(b, g, p, c, e)
+                           .BeamNorthEast()
+                           .BeamNorthWest()
+                           .BeamEast()
+                           .BeamWest()
+                           .BeamSouthEast()
+                           .BeamSouthWest()
+                           .Collect()));
+            _adjustedMoves.Add(CardType.Bash, new BashMove<TPiece, TCard>(
+           (Board<Tile, TPiece> b, Grid<Tile> g, TPiece p, TCard c, Tile e) => new MovementHelper<TPiece, TCard>(b, g, p, c, e)
+                           .BashNorthEast(1)
+                           .BashNorthWest(1)
+                           .BashEast(1)
+                           .BashWest(1)
+                           .BashSouthEast(1)
+                           .BashSouthWest(1)
+                           .Collect()));
+
 
         }
 

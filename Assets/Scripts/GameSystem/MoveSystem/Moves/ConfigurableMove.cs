@@ -21,6 +21,25 @@ namespace DAE.GameSystem
             _positionCollector = positionCollector;
         }
 
+        public override bool CanExecute(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, TCard card, Tile position)
+        {
+           if(board.TryGetPieceAt(position, out var toPosition))
+            {
+                return false;
+            }
+           else
+            {
+                return true;
+            }
+        }
+
+        public override void Execute(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, Tile position, TCard card)
+        {
+            board.Move(piece, position);
+            
+
+        }
+
         public override List<Tile> Positions(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, TCard card, Tile position)
             => _positionCollector(board, grid, piece, card, position);
     }
