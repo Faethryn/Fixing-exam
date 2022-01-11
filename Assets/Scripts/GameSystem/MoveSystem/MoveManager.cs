@@ -60,12 +60,12 @@ namespace DAE.GameSystem
         {
             _moves.Add(CardType.Bash, new BashMove<TPiece, TCard>(
                 (Board<Tile, TPiece> b, Grid<Tile> g, TPiece p, TCard c, Tile e) => new MovementHelper<TPiece, TCard>(b, g, p,c, e)
-                                .NorthEast(1, MovementHelper<TPiece, TCard>.IsEmptyTile)
-                                .NorthWest(1, MovementHelper<TPiece, TCard>.IsEmptyTile)
-                                .East(1, MovementHelper<TPiece, TCard>.IsEmptyTile)
-                                .West(1, MovementHelper<TPiece, TCard>.IsEmptyTile)
-                                .SouthEast(1, MovementHelper<TPiece, TCard>.IsEmptyTile)
-                                .SouthWest(1, MovementHelper<TPiece, TCard>.IsEmptyTile)
+                                .NorthEast(1)
+                                .NorthWest(1)
+                                .East(1)
+                                .West(1)
+                                .SouthEast(1)
+                                .SouthWest(1)
                                 .Collect()));
             _moves.Add(CardType.Beam, new SlashMove<TPiece, TCard>(
               (Board<Tile, TPiece> b, Grid<Tile> g, TPiece p, TCard c, Tile e) => new MovementHelper<TPiece, TCard>(b, g, p, c, e)

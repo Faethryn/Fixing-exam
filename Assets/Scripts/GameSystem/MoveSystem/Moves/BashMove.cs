@@ -33,10 +33,17 @@ namespace DAE.GameSystem
                 var nextXCoordinate =  enemyCoordinate.x + xOffset;
                 var nextYCoordinate =  enemyCoordinate.y + yOffset;
 
-              
-                grid.TryGetPositionAt(nextXCoordinate, nextYCoordinate, out var nextTile);
 
-                board.Move(toPiece, nextTile);
+                if (grid.TryGetPositionAt(nextXCoordinate, nextYCoordinate, out var nextTile))
+                {
+                    board.Move(toPiece, nextTile);
+
+                }
+                else
+                {
+                    board.Take(toPiece);
+                }
+               
 
             }
                 
