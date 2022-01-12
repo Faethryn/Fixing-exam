@@ -145,9 +145,12 @@ namespace DAE.GameSystem
 
             var isOtherPosition1OK = validators.All(v => v(_board, _grid, _piece,otherPosition1NextPosition));
 
-           
-
+            if(isOtherPosition1OK && otherPosition1NextPosition != null)
+            {
             _validPositions.Add(otherPosition1NextPosition);
+               
+            }
+
 
             var otherPosition2 = GetNextDirectionUp(direction);
             var otherPosition2XCoordinate = coordinate.x + (int)otherPosition2.x;
@@ -157,12 +160,12 @@ namespace DAE.GameSystem
 
             var isOtherPosition2OK = validators.All(v => v(_board, _grid, _piece, otherPosition2NextPosition));
 
-            if (!isOtherPosition2OK)
+            if (isOtherPosition2OK && otherPosition2NextPosition != null)
             {
-                return this;
+            _validPositions.Add(otherPosition2NextPosition);
+               
             }
 
-            _validPositions.Add(otherPosition2NextPosition);
 
            
 
