@@ -145,10 +145,7 @@ namespace DAE.GameSystem
 
             var isOtherPosition1OK = validators.All(v => v(_board, _grid, _piece,otherPosition1NextPosition));
 
-            if(!isOtherPosition1OK)
-            {
-                return this;
-            }
+           
 
             _validPositions.Add(otherPosition1NextPosition);
 
