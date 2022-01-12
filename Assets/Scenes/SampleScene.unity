@@ -5784,6 +5784,7 @@ MonoBehaviour:
   _playerHand: {fileID: 1472680476}
   _positionHelper: {fileID: 11400000, guid: 4e599239366c32d49a4ff202c73aed07, type: 2}
   _boardParent: {fileID: 2015797548}
+  _maxCards: 15
   _currentCard: {fileID: 0}
   _player: {fileID: 1557967760427895754}
 --- !u!1 &1574855923

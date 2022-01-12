@@ -36,6 +36,11 @@ namespace DAE.GameSystem
         [SerializeField]
         private Transform _boardParent;
 
+        private int _numberOfCards = 0;
+
+        [SerializeField]
+        private int _maxCards;
+
         public Card _currentCard = null;
 
         private MoveManager<Piece,Card> _moveManager;
@@ -218,11 +223,15 @@ namespace DAE.GameSystem
             //var randomNumber = new System.Random();
 
             //var cardNumber = randomNumber.Next(0, 4);
+
+        if (_numberOfCards <= _maxCards)
+            { 
             var cardNumber = UnityEngine.Random.Range(0, 4);
+
 
             if (cardNumber == 0)
             {
-               var card = Instantiate(_slashCard, _playerHand.transform);
+                var card = Instantiate(_slashCard, _playerHand.transform);
                 card.GetComponent<Card>().BeginCardDrag += (s, e)
                     => _currentCard = e.Card;
             }
@@ -245,6 +254,8 @@ namespace DAE.GameSystem
                 card.GetComponent<Card>().BeginCardDrag += (s, e)
                     => _currentCard = e.Card;
             }
+                _numberOfCards += 1;
+        }
         }
     }
 }
