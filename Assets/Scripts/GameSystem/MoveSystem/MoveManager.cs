@@ -89,8 +89,19 @@ namespace DAE.GameSystem
                             .SouthEast(1)
                             .SouthWest(1)
                             .Collect()));
+            _moves.Add(CardType.Bomb, new BombMove<TPiece, TCard>(
+          (Board<Tile, TPiece> b, Grid<Tile> g, TPiece p, TCard c, Tile e) => new MovementHelper<TPiece, TCard>(b, g, p, c, e)
+                          .NorthEastBomb(1)
+                          .NorthWestBomb(1)
+                          .EastBomb(1)
+                          .WestBomb(1)
+                          .SouthEastBomb(1)
+                          .SouthWestBomb(1)
+                          .Bomb()
+                          .Collect()));
 
-          _adjustedMoves.Add(CardType.Slash, new SlashMove<TPiece, TCard>(
+
+            _adjustedMoves.Add(CardType.Slash, new SlashMove<TPiece, TCard>(
             (Board<Tile, TPiece> b, Grid<Tile> g, TPiece p, TCard c, Tile e) => new MovementHelper<TPiece, TCard>(b, g, p, c, e)
                             .BashNorthEast(1)
                             .BashNorthWest(1)
@@ -122,7 +133,16 @@ namespace DAE.GameSystem
                            .BashSouthEast(1)
                            .BashSouthWest(1)
                            .Collect()));
-
+            _adjustedMoves.Add(CardType.Bomb, new BombMove<TPiece, TCard>(
+        (Board<Tile, TPiece> b, Grid<Tile> g, TPiece p, TCard c, Tile e) => new MovementHelper<TPiece, TCard>(b, g, p, c, e)
+                        .NorthEastBomb(1)
+                        .NorthWestBomb(1)
+                        .EastBomb(1)
+                        .WestBomb(1)
+                        .SouthEastBomb(1)
+                        .SouthWestBomb(1)
+                        .Bomb()
+                        .Collect()));
 
         }
 

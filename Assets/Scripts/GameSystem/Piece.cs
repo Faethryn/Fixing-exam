@@ -36,6 +36,10 @@ class Piece : MonoBehaviour, IPiece
     }
     public void Taken()
     {
+        if(PlayerID == 0)
+        {
+            Debug.Log("player tasks");
+        }
         gameObject.SetActive(false);
     }
 }

@@ -90,6 +90,84 @@ namespace DAE.GameSystem
 
         #endregion
 
+        #region Bomb
+        public MovementHelper<TPiece, TCard> Bomb()
+        {
+
+
+            _validPositions.Add(_tile);
+
+           
+
+            return this;
+        }
+
+        public MovementHelper<TPiece, TCard> NorthEastBomb(int numTiles = int.MaxValue, params Validator[] validators)
+           => BombRadius(1, 0, 0, numTiles, validators);
+        public MovementHelper<TPiece, TCard> NorthWestBomb(int numTiles = int.MaxValue, params Validator[] validators)
+            => BombRadius(-1, 1, 4, numTiles, validators);
+
+        public MovementHelper<TPiece, TCard> EastBomb(int numTiles = int.MaxValue, params Validator[] validators)
+            => BombRadius(0, 1, 5, numTiles, validators);
+
+        public MovementHelper<TPiece, TCard> SouthEastBomb(int numTiles = int.MaxValue, params Validator[] validators)
+            => BombRadius(1, -1, 1, numTiles, validators);
+
+        public MovementHelper<TPiece, TCard> SouthWestBomb(int numTiles = int.MaxValue, params Validator[] validators)
+            => BombRadius(0, -1, 2, numTiles, validators);
+
+        public MovementHelper<TPiece, TCard> WestBomb(int numTiles = int.MaxValue, params Validator[] validators)
+            => BombRadius(-1, 0, 3, numTiles, validators);
+
+        public MovementHelper<TPiece, TCard> BombRadius(int xOffset, int yOffset, int direction, int numTiles = int.MaxValue, params Validator[] validators)
+        {
+
+
+
+
+
+            if (!_board.TryGetPositionOf(_piece, out var position))
+                return this;
+
+            if (!_grid.TryGetCoordinateOf(_tile, out var coordinate))
+                return this;
+
+            var nextXCoordinate = coordinate.x + xOffset;
+            var nextYCoordinate = coordinate.y + yOffset;
+
+
+
+
+
+            var hasNextPosition = _grid.TryGetPositionAt(nextXCoordinate, nextYCoordinate, out var nextPosition);
+            int step = 0;
+            while (hasNextPosition && step < numTiles)
+            {
+
+                var isOk = validators.All((v) => v(_board, _grid, _piece, nextPosition));
+                if (!isOk)
+                    return this;
+
+                
+                _validPositions.Add(nextPosition);
+               
+
+                nextXCoordinate += xOffset;
+                nextYCoordinate += yOffset;
+
+
+
+
+                hasNextPosition = _grid.TryGetPositionAt(nextXCoordinate, nextYCoordinate, out nextPosition);
+
+                step++;
+            }
+
+            return this;
+        }
+
+        #endregion
+
         public delegate bool Validator(Board<Tile, TPiece> board, Grid<Tile> grid, TPiece piece, Tile position);
 
         public    MovementHelper<TPiece, TCard> Warp()

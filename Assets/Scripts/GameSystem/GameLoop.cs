@@ -21,6 +21,8 @@ namespace DAE.GameSystem
         [SerializeField]
         private GameObject _warpCard;
         [SerializeField]
+        private GameObject _bombCard;
+        [SerializeField]
         private GameObject _playerHand;
         [SerializeField]
         private PositionHelper _positionHelper;
@@ -226,7 +228,7 @@ namespace DAE.GameSystem
 
         if (_numberOfCards <= _maxCards)
             { 
-            var cardNumber = UnityEngine.Random.Range(0, 4);
+            var cardNumber = UnityEngine.Random.Range(0, 5);
 
 
             if (cardNumber == 0)
@@ -254,6 +256,12 @@ namespace DAE.GameSystem
                 card.GetComponent<Card>().BeginCardDrag += (s, e)
                     => _currentCard = e.Card;
             }
+                if (cardNumber == 4)
+                {
+                    var card = Instantiate(_bombCard, _playerHand.transform);
+                    card.GetComponent<Card>().BeginCardDrag += (s, e)
+                        => _currentCard = e.Card;
+                }
                 _numberOfCards += 1;
         }
         }

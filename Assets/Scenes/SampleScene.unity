@@ -5781,6 +5781,7 @@ MonoBehaviour:
   _bashCard: {fileID: 4902406270680412046, guid: 2096b2f1ba879a540a9368d41c7f4c26, type: 3}
   _slashCard: {fileID: 667325500526918199, guid: 5e430167713739f41b58c27866ca749a, type: 3}
   _warpCard: {fileID: 5106464395887178510, guid: f8a904e6a056e8d43876993493c603d1, type: 3}
+  _bombCard: {fileID: 8622410879689508238, guid: 51a37d29a0c39b34d84efb2a6be8a64a, type: 3}
   _playerHand: {fileID: 1472680476}
   _positionHelper: {fileID: 11400000, guid: 4e599239366c32d49a4ff202c73aed07, type: 2}
   _boardParent: {fileID: 2015797548}
