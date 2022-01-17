@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAE.GameSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,13 @@ class Piece : MonoBehaviour, IPiece
     private int _playerID;
     public int PlayerID => _playerID;
 
+    [SerializeField]
+    private GameObject _gameLoop;
+
+    [SerializeField]
+    private GameObject _gameOverScreen;
+   
+
     public void MoveTo(Vector3 worldPosition)
     {
         transform.position = worldPosition;
@@ -39,6 +47,9 @@ class Piece : MonoBehaviour, IPiece
         if(PlayerID == 0)
         {
             Debug.Log("player tasks");
+            //_gameLoop.GetComponent<GameLoop>().GameOverButton();
+            _gameOverScreen.SetActive(true);
+            _gameLoop.SetActive(false);
         }
         gameObject.SetActive(false);
     }

@@ -1,5 +1,5 @@
 ﻿using DAE.BoardSystem;
-
+using DAE.StateSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +27,13 @@ namespace DAE.GameSystem
         [SerializeField]
         private PositionHelper _positionHelper;
 
+        [SerializeField]
+        private GameObject _GameOverMenu;
+        [SerializeField]
+        private GameObject _StartMenu;
+        [SerializeField]
+        private Component _camRaycaster;
+
         private List<Tile> _allTiles = new List<Tile>();
 
         //internal void DebugPosition(Tile tile)
@@ -46,7 +53,9 @@ namespace DAE.GameSystem
         public Card _currentCard = null;
 
         private MoveManager<Piece,Card> _moveManager;
-       
+
+        private StateMachine<GameStateBase> _gameStateMachine;
+
         private Grid<Tile> _grid;
         private Board<Tile, Piece> _board;
         [SerializeField]
@@ -60,6 +69,17 @@ namespace DAE.GameSystem
             _board = new Board<Tile, Piece>();
 
             _moveManager = new MoveManager<Piece, Card>(_board,_grid);
+
+            //_gameStateMachine = new StateMachine<GameStateBase>();
+
+            //var gamePlayState = new PlayState(_gameStateMachine, _camRaycaster, _GameOverMenu);
+            //_gameStateMachine.Register(GameState.GamePlayState, gamePlayState);
+            //var menuState = new MenuState(_gameStateMachine, _StartMenu);
+            //_gameStateMachine.Register(GameState.MenuState, menuState);
+            //var gameOverState = new GameOverState(_gameStateMachine);
+            //_gameStateMachine.Register(GameState.GameOverState, gameOverState);
+
+            //_gameStateMachine.InitialState = GameState.MenuState;
 
             ConnectPiece(_grid,_board);
 
@@ -102,6 +122,11 @@ namespace DAE.GameSystem
 
         }
 
+        //public void MenuButton()
+        //    => _gameStateMachine.CurrentState.GameStart();
+
+        //public void GameOverButton()
+        //    => _gameStateMachine.CurrentState.GameOver();
 
         public void AddTiles(Tile tile)
         {
@@ -265,5 +290,7 @@ namespace DAE.GameSystem
                 _numberOfCards += 1;
         }
         }
+
+       
     }
 }
