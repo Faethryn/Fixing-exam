@@ -39,5 +39,11 @@ namespace DAE.BoardSystem
             Debug.Log((x, y));
             _positions.Add((x,y), position);
         }
+
+        public void Remove(int x, int y, TPosition position)
+        {
+            _positions.Remove((x, y));
+        }
+
     }
 }

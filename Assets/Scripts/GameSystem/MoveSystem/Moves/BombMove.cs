@@ -23,6 +23,8 @@ namespace DAE.GameSystem
         {
             if (board.TryGetPieceAt(position, out var toPiece))
                 board.Take(toPiece);
+            grid.TryGetCoordinateOf(position, out var coord);
+            grid.Remove(coord.x, coord.y, position);
             GameObject ConnectedObject = position.gameObject;
             GameObject.Destroy(ConnectedObject);
 
